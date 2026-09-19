@@ -1,56 +1,55 @@
-<div dir="rtl">
+# Yaqout Language
 
-        
-# 💎 لغة ياقوت (Yaqout Language)
-### أول لغة برمجة عربية احترافية مبنية على Lua 5.5
+### A Full Arabic Programming Language Based on Lua 5.5
 
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d03fa7"/><stop offset="1" stop-color="#7d44cf"/></linearGradient>
-  </defs>
-  <path d="M140 60 L372 60 L460 180 L256 460 L52 180 Z" fill="url(#g)" stroke="#fff" stroke-width="10"/>
-  <path d="M140 60 L372 60 L320 180 L192 180 Z" fill="#fff" fill-opacity="0.2"/>
-  <path d="M192 180 L320 180 L256 460 Z" fill="#fff" fill-opacity="0.1"/>
-</svg>
-        
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20|%20Linux%20|%20macOS-blue)]()
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-blue)]()
 [![Language](https://img.shields.io/badge/Language-Arabic%20%2B%20English-green)]()
 
 ---
 
-## 📋 جدول المحتويات
-- [نظرة عامة](#-نظرة-عامة)
-- [المميزات الرئيسية](#-المميزات-الرئيسية)
-- [العيوب والقيود](#-العيوب-والقيود)
-- [التثبيت والبدء](#-التثبيت-والبدء)
-- [أمثلة برمجية](#-أمثلة-برمجية)
-- [المكتبات القياسية](#-المكتبات-القياسية)
-- [جدول الكلمات المفتاحية](#-جدول-الكلمات-المفتاحية)
-- [مقارنة مع اللغات الأخرى](#-مقارنة-مع-اللغات-الأخرى)
-- [الأسئلة الشائعة](#-الأسئلة-الشائعة)
-- [المساهمة](#-المساهمة)
-- [الترخيص](#-الترخيص)
+## Table of Contents
+
+- [Overview](#overview)
+- [Why Yaqout](#why-yaqout)
+- [Key Features](#key-features)
+- [Limitations](#limitations)
+- [Installation and Quick Start](#installation-and-quick-start)
+- [Code Examples](#code-examples)
+- [Standard Libraries](#standard-libraries)
+- [Keyword Table](#keyword-table)
+- [Comparison with Other Languages](#comparison-with-other-languages)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [Developer](#developer)
+- [License](#license)
 
 ---
 
-## 🌟 نظرة عامة
+## Overview
 
-**ياقوت** هي لغة برمجة نصية (Scripting Language) قوية وسريعة، تم تطويرها لتكون النسخة العربية الكاملة من لغة Lua الشهيرة. تهدف ياقوت إلى تمكين المبرمجين العرب من كتابة الأكواد بروح لغتهم الأصلية، مع الحفاظ على الأداء العالي والمرونة التي تتميز بها Lua.
+**Yaqout** is a powerful and fast scripting language built as a complete Arabic version of the well-known Lua language. It enables Arab developers to write code in their native language while keeping the high performance and flexibility of Lua.
 
-### لماذا ياقوت؟
-- 🎓 **تعليمية**: مثالية لتعليم البرمجة للمبتدئين العرب
-- 🎮 **عملية**: يمكن استخدامها في تطوير الألعاب والتطبيقات
-- ⚡ **سريعة**: تحافظ على أداء Lua المشهور
-- 🌍 **مفتوحة المصدر**: مجانية للاستخدام والتعديل
+Code examples below keep the original Arabic keywords because that is the point of the language — all explanations are in English.
+
+### Why Yaqout?
+
+- **Educational**: ideal for teaching programming to Arabic-speaking beginners
+- **Practical**: usable for game and application development
+- **Fast**: keeps the famous Lua performance
+- **Open source**: free to use and modify under MIT
 
 ---
 
-## ✨ المميزات الرئيسية
+## Key Features
 
-### 1. 🔤 عربية بالكامل
-كلمات مفتاحية عربية تجعل الكود قابلاً للقراءة بسهولة:
+### 1. Fully Arabic keywords
+
+Readable Arabic control flow:
+
 ```lua
+if age >= 18 then
+-- in Yaqout:
 إذا العمر >= 18 إذن
     اطبع("أنت بالغ")
 وإلا
@@ -58,8 +57,10 @@
 نهاية
 ```
 
-### 2. 📛 دعم اليونيكود
-إمكانية تسمية المتغيرات والدوال بحروف عربية أصيلة:
+### 2. Unicode identifiers
+
+Variables and functions can use native Arabic names:
+
 ```lua
 محلي اسم_المستخدم = "أحمد"
 محلي عمر_المستخدم = 25
@@ -69,90 +70,105 @@
 نهاية
 ```
 
-### 3. 📚 مكتبات قياسية معربة
-جميع وظائف الرياضيات، النصوص، الجداول، والنظام متوفرة بأسماء عربية:
+### 3. Localized standard libraries
+
+Math, string, table, and OS functions with Arabic names:
+
 ```lua
 محلي الجذر = رياضيات.جذر(16)  -- 4
-محلي النص = نصوص.عكس("مرحبا")  -- "ابحرم"
+محلي النص = نصوص.عكس("مرحبا")
 جدول.إدراج(قائمتي, "عنصر جديد")
 ```
 
-### 4. 📁 امتدادات ملفات مخصصة
-دعم ملفات `.ياقوت` و `.yq`:
+### 4. Custom file extensions
+
+Supports `.yaqout` and `.yq` files:
+
 ```bash
-yaqout.exe برنامجي.yq
-yaqout.exe تطبيق.ياقوت
+yaqout.exe my_program.yq
+yaqout.exe app.ياقوت
 ```
 
-### 5. ⚡ خفيفة وسريعة
-تحافظ على نفس محرك Lua السريع والفعال:
-- حجم الملف التنفيذي: ~200KB
-- استهلاك الذاكرة: منخفض جداً
-- سرعة التنفيذ: قريبة من C
+### 5. Lightweight and fast
 
-### 6. 🎨 دعم VS Code
-إضافة (Extension) تلوين الكود وأيقونة رسمية للغة:
-- تلوين الكلمات المفتاحية العربية
-- دعم الإكمال التلقائي
-- أيقونة مخصصة لملفات `.yq`
+Same fast Lua engine:
 
-### 7. 📦 مكتبات متقدمة
-دعم `ياقوت.ملفات` و `ياقوت.ويب`:
+- Binary size: ~200KB
+- Memory usage: very low
+- Execution speed: close to C
+
+### 6. VS Code support
+
+Syntax highlighting extension with a custom icon for `.yq` files:
+
+- Arabic keyword highlighting
+- Autocomplete support
+- Custom file icon
+
+### 7. Advanced libraries
+
+`yaqout.files` and `yaqout.web` helpers:
+
 ```lua
 استدعي("library.yq")
-ياقوت.ملفات.كتابة("نص.txt", "مرحباً")
+ياقوت.ملفات.كتابة("notes.txt", "hello")
 ياقوت.ويب.جلب("https://example.com")
 ```
 
-### 8. 🔄 التوافق مع Lua
-يمكنك استخدام الكلمات الإنجليزية جنباً إلى جنب مع العربية:
+### 8. Lua compatible
+
+English and Arabic can be mixed — any Lua code runs as-is:
+
 ```lua
 local x = 10
 محلي ص = 20
 if x > ص then
-    اطبع("x أكبر")
+    اطبع("x is bigger")
 end
 ```
 
 ---
 
-## ⚠️ العيوب والقيود
+## Limitations
 
-### 1. 🔧 التوافق مع المكتبات الخارجية
-- المكتبات المكتوبة بـ C قد لا تدعم أسماء الدوال العربية
-- يُنصح باستخدام أسماء إنجليزية للواجهات الخارجية
+### 1. C extension compatibility
 
-### 2. 📝 التحرير والبيئات
-- بعض المحررات القديمة لا تدعم الكتابة من اليمين لليسار
-- قد تواجه مشاكل مع بعض الخطوط
+- C libraries may not support Arabic function names
+- Use English names for external interfaces
 
-### 3. 🌐 الترميز
-- يجب حفظ الملفات بترميز UTF-8
-- بعض الطرفيات تحتاج إعداداً خاصاً لعرض العربية
+### 2. Editors
 
-### 4. 📚 التوثيق
-- التوثيق لا يزال قيد التطوير
-- المجتمع العربي أصغر من مجتمع Lua الإنجليزي
+- Old editors may not support right-to-left text
+- Some fonts have issues with Arabic
 
-### 5. 🔍 البحث والمساعدة
-- صعوبة البحث عن حلول للمشاكل باللغة العربية
-- معظم موارد Lua بالإنجليزية
+### 3. Encoding
+
+- Save files as UTF-8
+- Some terminals need special setup for Arabic display (Windows: `chcp 65001`)
+
+### 4. Documentation and community
+
+- Docs are still evolving
+- The Arabic community is smaller than the English Lua community, so searching for solutions in Arabic is harder
 
 ---
 
-## 🚀 التثبيت والبدء
+## Installation and Quick Start
 
-### التحميل السريع (Windows)
+### Quick install (Windows)
+
 ```bash
-# 1. حمّل ملف yaqout.exe من صفحة الإصدارات
-# 2. ضعه في مجلد وأضفه للـ PATH
-# 3. افتح الطرفية واختبر:
+# 1. Download yaqout.exe from the Releases page
+# 2. Put it in a folder and add it to PATH
+# 3. Test it:
 yaqout.exe -v
 ```
 
-### التجميع من المصدر
+### Build from source
+
+Requirements: GCC or MinGW, C99.
+
 ```bash
-# متطلبات: GCC أو MinGW
 gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c ^
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c ^
@@ -162,19 +178,34 @@ gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     lutf8lib.c loadlib.c linit.c -lm
 ```
 
-### تثبيت إضافة VS Code
+Linux:
+
 ```bash
-# شغّل سكربت التثبيت
+gcc -O2 -std=c99 -DLUA_USE_LINUX -o yaqout \
+    lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c \
+    lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c \
+    lparser.c lstate.c lstring.c ltable.c ltm.c lundump.c \
+    lvm.c lzio.c lauxlib.c lbaselib.c lcorolib.c ldblib.c \
+    liolib.c lmathlib.c loslib.c lstrlib.c ltablib.c \
+    lutf8lib.c loadlib.c linit.c -lm -ldl
+```
+
+### Install the VS Code extension
+
+```bash
 install_extension.bat
 ```
 
+See `build.md` for the full build guide (Windows / Linux / macOS, static and shared libraries, troubleshooting).
+
 ---
 
-## 💻 أمثلة برمجية
+## Code Examples
 
-### مثال 1: ترحيب بسيط
+### Example 1: Hello
+
 ```lua
--- برنامج ترحيب بسيط
+-- Simple greeting program
 محلي الاسم = "زائر"
 
 دالة ترحيب(نص)
@@ -184,9 +215,10 @@ install_extension.bat
 ترحيب(الاسم)
 ```
 
-### مثال 2: حساب المتوسط
+### Example 2: Average
+
 ```lua
--- حساب متوسط درجات الطلاب
+-- Average of student grades
 محلي درجات = {85, 92, 78, 95, 88}
 محلي المجموع = 0
 
@@ -198,9 +230,9 @@ install_extension.bat
 اطبع("متوسط الدرجات: " .. المتوسط)
 ```
 
-### مثال 3: القائمة المتكررة
+### Example 3: Multiplication table
+
 ```lua
--- طباعة جدول الضرب
 دالة جدول_الضرب(رقم)
     اطبع("جدول ضرب العدد " .. رقم .. ":")
     لكل ي = 1, 10 افعل
@@ -212,9 +244,9 @@ install_extension.bat
 جدول_الضرب(7)
 ```
 
-### مثال 4: التعامل مع الجداول
+### Example 4: Tables (records)
+
 ```lua
--- إنشاء كائن طالب
 محلي طالب = {
     اسم = "سارة",
     عمر = 20,
@@ -226,7 +258,6 @@ install_extension.bat
     }
 }
 
--- دالة لحساب المعدل
 دالة احسب_المعدل(ط)
     محلي مجموع = 0
     محلي عدد = 0
@@ -241,15 +272,16 @@ install_extension.bat
 اطبع("المعدل: " .. احسب_المعدل(طالب))
 ```
 
-### مثال 5: التعامل مع الملفات
+### Example 5: Files
+
 ```lua
 استدعي("library.yq")
 
--- كتابة ملف
-ياقوت.ملفات.كتابة("مذكرة.txt", "هذه مذكرتي الشخصية")
+-- Write a file
+ياقوت.ملفات.كتابة("notes.txt", "my notes")
 
--- قراءة ملف
-محلي ملف = دخل_خرج.فتح("مذكرة.txt", "r")
+-- Read a file
+محلي ملف = دخل_خرج.فتح("notes.txt", "r")
 إذا ملف إذن
     محلي محتوى = ملف:قراءة("*all")
     اطبع(محتوى)
@@ -259,194 +291,215 @@ install_extension.bat
 
 ---
 
-## 📚 المكتبات القياسية
+## Standard Libraries
 
-### 📊 مكتبة الرياضيات (رياضيات)
-| الدالة | الوصف | مثال |
-|--------|-------|------|
-| `رياضيات.جذر(س)` | الجذر التربيعي | `رياضيات.جذر(16)` → `4` |
-| `رياضيات.جيب(س)` | جيب الزاوية (Sin) | `رياضيات.جيب(0)` → `0` |
-| `رياضيات.جتا(س)` | جيب تمام (Cos) | `رياضيات.جتا(0)` → `1` |
-| `رياضيات.ظل(س)` | ظل الزاوية (Tan) | `رياضيات.ظل(0)` → `0` |
-| `رياضيات.أرض(س)` | تقريب للأسفل | `رياضيات.أرض(3.7)` → `3` |
-| `رياضيات.سقف(س)` | تقريب للأعلى | `رياضيات.سقف(3.2)` → `4` |
-| `رياضيات.قيمة_مطلقة(س)` | القيمة المطلقة | `رياضيات.قيمة_مطلقة(-5)` → `5` |
-| `رياضيات.أقصى(...)` | أكبر قيمة | `رياضيات.أقصى(1,5,3)` → `5` |
-| `رياضيات.أدنى(...)` | أصغر قيمة | `رياضيات.أدنى(1,5,3)` → `1` |
-| `رياضيات.عشوائي(م,ن)` | رقم عشوائي | `رياضيات.عشوائي(1,100)` |
-| `رياضيات.ط` | قيمة π | `3.14159...` |
+### Math (`رياضيات`)
 
-### 📝 مكتبة النصوص (نصوص)
-| الدالة | الوصف | مثال |
-|--------|-------|------|
-| `نصوص.طول(س)` | طول النص | `نصوص.طول("مرحبا")` → `5` |
-| `نصوص.عكس(س)` | عكس النص | `نصوص.عكس("abc")` → `"cba"` |
-| `نصوص.تكبير(س)` | تحويل لكبيرة | `نصوص.تكبير("abc")` → `"ABC"` |
-| `نصوص.تصغير(س)` | تحويل لصغيرة | `نصوص.تصغير("ABC")` → `"abc"` |
-| `نصوص.تنسيق(...)` | تنسيق النص | `نصوص.تنسيق("%d", 42)` |
+| Function | Description | Example |
+|----------|-------------|---------|
+| `رياضيات.جذر(x)` | Square root | `رياضيات.جذر(16)` -> `4` |
+| `رياضيات.جيب(x)` | Sine | `رياضيات.جيب(0)` -> `0` |
+| `رياضيات.جتا(x)` | Cosine | `رياضيات.جتا(0)` -> `1` |
+| `رياضيات.ظل(x)` | Tangent | `رياضيات.ظل(0)` -> `0` |
+| `رياضيات.أرض(x)` | Floor | `رياضيات.أرض(3.7)` -> `3` |
+| `رياضيات.سقف(x)` | Ceil | `رياضيات.سقف(3.2)` -> `4` |
+| `رياضيات.قيمة_مطلقة(x)` | Absolute value | `رياضيات.قيمة_مطلقة(-5)` -> `5` |
+| `رياضيات.أقصى(...)` | Max | `رياضيات.أقصى(1,5,3)` -> `5` |
+| `رياضيات.أدنى(...)` | Min | `رياضيات.أدنى(1,5,3)` -> `1` |
+| `رياضيات.عشوائي(m,n)` | Random number | `رياضيات.عشوائي(1,100)` |
+| `رياضيات.ط` | Pi | `3.14159...` |
 
-### 📋 مكتبة الجداول (جدول)
-| الدالة | الوصف | مثال |
-|--------|-------|------|
-| `جدول.إدراج(ج,ق)` | إضافة عنصر | `جدول.إدراج(قائمة, 5)` |
-| `جدول.حذف(ج,م)` | حذف عنصر | `جدول.حذف(قائمة, 1)` |
-| `جدول.ترتيب(ج)` | ترتيب الجدول | `جدول.ترتيب(قائمة)` |
-| `جدول.دمج(ج,ف)` | دمج كنص | `جدول.دمج(قائمة, ",")` |
+### Strings (`نصوص`)
 
-### 🖥️ مكتبة النظام (نظام)
-| الدالة | الوصف | مثال |
-|--------|-------|------|
-| `نظام.وقت()` | الوقت الحالي | `نظام.وقت()` |
-| `نظام.تاريخ(ف)` | التاريخ المنسق | `نظام.تاريخ("%Y-%m-%d")` |
-| `نظام.خرج(ك)` | إنهاء البرنامج | `نظام.خرج(0)` |
-| `نظام.تنفيذ(أ)` | تنفيذ أمر | `نظام.تنفيذ("dir")` |
+| Function | Description | Example |
+|----------|-------------|---------|
+| `نصوص.طول(s)` | Length | `نصوص.طول("مرحبا")` -> `5` |
+| `نصوص.عكس(s)` | Reverse | `نصوص.عكس("abc")` -> `"cba"` |
+| `نصوص.تكبير(s)` | Uppercase | `نصوص.تكبير("abc")` -> `"ABC"` |
+| `نصوص.تصغير(s)` | Lowercase | `نصوص.تصغير("ABC")` -> `"abc"` |
+| `نصوص.تنسيق(...)` | Format | `نصوص.تنسيق("%d", 42)` |
 
-### 📁 مكتبة الإدخال/الإخراج (دخل_خرج)
-| الدالة | الوصف |
-|--------|-------|
-| `دخل_خرج.فتح(ملف,نمط)` | فتح ملف |
-| `دخل_خرج.قراءة()` | قراءة من المدخلات |
-| `دخل_خرج.كتابة(...)` | كتابة للمخرجات |
+### Tables (`جدول`)
 
----
+| Function | Description |
+|----------|-------------|
+| `جدول.إدراج(t,v)` | Insert element |
+| `جدول.حذف(t,i)` | Remove element |
+| `جدول.ترتيب(t)` | Sort table |
+| `جدول.دمج(t,sep)` | Join as string |
 
-## 🔤 جدول الكلمات المفتاحية
+### System (`نظام`)
 
-### الكلمات المفتاحية الأساسية
-| العربية | الإنجليزية | الوصف |
-|---------|------------|-------|
-| `محلي` | `local` | تعريف متغير محلي |
-| `دالة` | `function` | تعريف دالة |
-| `نهاية` | `end` | إنهاء كتلة |
-| `ارجع` | `return` | إرجاع قيمة |
-| `إذا` | `if` | شرط |
-| `إذن` | `then` | بداية كتلة الشرط |
-| `وإلا` | `else` | الحالة البديلة |
-| `وإلا_إذا` | `elseif` | شرط بديل |
-| `لكل` | `for` | حلقة تكرار |
-| `طالما` | `while` | حلقة شرطية |
-| `افعل` | `do` | بداية كتلة الحلقة |
-| `كرر` | `repeat` | حلقة كرر |
-| `حتى` | `until` | شرط إنهاء الكرر |
-| `اكسر` | `break` | كسر الحلقة |
-| `في` | `in` | في (للتكرار) |
+| Function | Description |
+|----------|-------------|
+| `نظام.وقت()` | Current time |
+| `نظام.تاريخ(f)` | Formatted date |
+| `نظام.خرج(c)` | Exit program |
+| `نظام.تنفيذ(cmd)` | Execute shell command |
 
-### القيم المنطقية
-| العربية | الإنجليزية | الوصف |
-|---------|------------|-------|
-| `صح` | `true` | صحيح |
-| `خطأ` | `false` | خاطئ |
-| `لاشيء` | `nil` | قيمة فارغة |
+### IO (`دخل_خرج`)
 
-### العمليات المنطقية
-| العربية | الإنجليزية | الوصف |
-|---------|------------|-------|
-| `و` | `and` | و المنطقية |
-| `أو` | `or` | أو المنطقية |
-| `ليس` | `not` | النفي |
-
-### الدوال الأساسية
-| العربية | الإنجليزية | الوصف |
-|---------|------------|-------|
-| `اطبع` | `print` | طباعة على الشاشة |
-| `نوع` | `type` | نوع المتغير |
-| `تحويل_لرقم` | `tonumber` | تحويل لرقم |
-| `تحويل_لنص` | `tostring` | تحويل لنص |
-| `أزواج` | `pairs` | تكرار على جدول |
-| `أزواج_رقمية` | `ipairs` | تكرار رقمي |
+| Function | Description |
+|----------|-------------|
+| `دخل_خرج.فتح(file,mode)` | Open file |
+| `دخل_خرج.قراءة()` | Read from input |
+| `دخل_خرج.كتابة(...)` | Write to output |
 
 ---
 
-## 📊 مقارنة مع اللغات الأخرى
+## Keyword Table
 
-### ياقوت vs Python
-| الميزة | ياقوت | Python |
-|--------|-------|--------|
-| سهولة التعلم | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| الكلمات المفتاحية العربية | ✅ | ❌ |
-| المكتبات المعربة | ✅ | ❌ |
-| الأداء | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| حجم الملف التنفيذي | ~200KB | ~30MB |
-| التضمين في الألعاب | ✅ | 🟡 |
-| المجتمع | 🟡 | ⭐⭐⭐⭐⭐ |
+### Core keywords
 
-### ياقوت vs JavaScript
-| الميزة | ياقوت | JavaScript |
-|--------|-------|------------|
-| سهولة التعلم | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| الكلمات المفتاحية العربية | ✅ | ❌ |
-| التوافق مع الويب | ❌ | ✅ |
-| الأداء | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| التعقيد | منخفض | متوسط |
+| Arabic | English | Description |
+|--------|---------|-------------|
+| `محلي` | `local` | Define a local variable |
+| `دالة` | `function` | Define a function |
+| `نهاية` | `end` | Close a block |
+| `ارجع` | `return` | Return a value |
+| `إذا` | `if` | Condition |
+| `إذن` | `then` | Start of condition block |
+| `وإلا` | `else` | Alternative branch |
+| `وإلا_إذا` | `elseif` | Alternative condition |
+| `لكل` | `for` | Loop |
+| `طالما` | `while` | While loop |
+| `افعل` | `do` | Start of loop block |
+| `كرر` | `repeat` | Repeat loop |
+| `حتى` | `until` | Repeat-until condition |
+| `اكسر` | `break` | Break loop |
+| `في` | `in` | In (for loops) |
 
-### ياقوت vs Lua
-| الميزة | ياقوت | Lua |
-|--------|-------|-----|
-| نفس المحرك | ✅ | ✅ |
-| الكلمات العربية | ✅ | ❌ |
-| المكتبات المعربة | ✅ | ❌ |
-| التوافق | 100% | - |
-| المجتمع | 🟡 | ⭐⭐⭐⭐ |
+### Boolean values
 
----
+| Arabic | English | Description |
+|--------|---------|-------------|
+| `صح` | `true` | True |
+| `خطأ` | `false` | False |
+| `لاشيء` | `nil` | Nil / empty |
 
-## ❓ الأسئلة الشائعة
+### Logical operators
 
-### س1: هل ياقوت مجانية؟
-**ج:** نعم، ياقوت مفتوحة المصدر ومجانية تماماً تحت رخصة MIT.
+| Arabic | English | Description |
+|--------|---------|-------------|
+| `و` | `and` | Logical and |
+| `أو` | `or` | Logical or |
+| `ليس` | `not` | Negation |
 
-### س2: هل يمكنني استخدام ياقوت في مشاريع تجارية؟
-**ج:** نعم، رخصة MIT تسمح بالاستخدام التجاري.
+### Built-in functions
 
-### س3: هل ياقوت متوافقة مع كود Lua العادي؟
-**ج:** نعم، ياقوت متوافقة 100% مع Lua. يمكنك تشغيل أي كود Lua.
-
-### س4: كيف أتعلم ياقوت؟
-**ج:** ابدأ بقراءة:
-1. `DOCS_AR.md` - التوثيق الأساسي
-2. `YAQOUT_BOOK.md` - كتاب تعليمي شامل
-3. مجلد `testes/` - أمثلة وتجارب
-
-### س5: لماذا لا تظهر الحروف العربية بشكل صحيح؟
-**ج:** تأكد من:
-- حفظ الملف بترميز UTF-8
-- استخدام طرفية تدعم UTF-8
-- في Windows CMD: `chcp 65001`
-
-### س6: هل يمكنني المساهمة في المشروع؟
-**ج:** بالتأكيد! راجع ملف `CONTRIBUTING.md` للتفاصيل.
-
-### س7: أين يمكنني الإبلاغ عن مشكلة؟
-**ج:** افتح Issue جديد على GitHub مع وصف تفصيلي للمشكلة.
-
-### س8: هل ياقوت تعمل على Linux/Mac؟
-**ج:** نعم، يمكن تجميعها على أي نظام يدعم GCC.
+| Arabic | English | Description |
+|--------|---------|-------------|
+| `اطبع` | `print` | Print to screen |
+| `نوع` | `type` | Variable type |
+| `تحويل_لرقم` | `tonumber` | Convert to number |
+| `تحويل_لنص` | `tostring` | Convert to string |
+| `أزواج` | `pairs` | Iterate over table |
+| `أزواج_رقمية` | `ipairs` | Numeric iteration |
 
 ---
 
-## 🤝 المساهمة
+## Comparison with Other Languages
 
-نرحب بجميع المساهمات! يمكنك المساهمة في:
-- 🌐 تعريب المزيد من المكتبات
-- 📖 كتابة التوثيق والأمثلة
-- 🐛 الإبلاغ عن الأخطاء وإصلاحها
-- ⭐ نشر المشروع ودعمه
+### Yaqout vs Python
 
-**راجع [CONTRIBUTING.md](CONTRIBUTING.md) للتفاصيل الكاملة.**
+| Feature | Yaqout | Python |
+|---------|--------|--------|
+| Learning curve | Easy | Easy |
+| Arabic keywords | Yes | No |
+| Localized libraries | Yes | No |
+| Performance | High | Medium |
+| Binary size | ~200KB | ~30MB |
+| Game embedding | Yes | Partial |
+| Community | Small | Very large |
+
+### Yaqout vs JavaScript
+
+| Feature | Yaqout | JavaScript |
+|---------|--------|------------|
+| Learning curve | Easy | Medium |
+| Arabic keywords | Yes | No |
+| Web support | No | Yes |
+| Performance | High | High |
+| Complexity | Low | Medium |
+
+### Yaqout vs Lua
+
+| Feature | Yaqout | Lua |
+|---------|--------|-----|
+| Same engine | Yes | Yes |
+| Arabic keywords | Yes | No |
+| Localized libraries | Yes | No |
+| Compatibility | 100% with Lua | - |
+| Community | Small | Large |
 
 ---
 
-## 👨‍💻 المطور
+## FAQ
 
-- **المطور الرئيسي**: إسلام النشار (Islam Al-Nashar)
-- **المؤسسة**: ستوديو النشار (Al-Nashar Studio)
-- **السنة**: 2026
+### Q1: Is Yaqout free?
+
+Yes, open source and free under MIT.
+
+### Q2: Can I use it commercially?
+
+Yes, MIT allows commercial use.
+
+### Q3: Is it compatible with plain Lua code?
+
+Yes, 100% compatible. Any Lua code runs.
+
+### Q4: How do I learn it?
+
+1. `YAQOUT_BOOK.md` — full learning book (being translated to English)
+2. `build.md` — build guide
+3. `testes/` folder — examples and tests
+
+### Q5: Arabic letters do not display correctly?
+
+Make sure:
+
+- Files are saved as UTF-8
+- Terminal supports UTF-8
+- On Windows CMD: `chcp 65001`
+
+### Q6: Can I contribute?
+
+Yes, see `CONTRIBUTING.md`.
+
+### Q7: Where do I report issues?
+
+Open a new GitHub Issue with details.
+
+### Q8: Does it work on Linux/Mac?
+
+Yes, it builds with GCC on any system.
 
 ---
 
-## 📜 الترخيص
+## Contributing
 
-هذا المشروع مفتوح المصدر ومتاح تحت رخصة **MIT**.
+All contributions are welcome:
+
+- Localize more libraries
+- Write docs and examples
+- Report and fix bugs
+- Star and share the project
+
+See CONTRIBUTING.md for details.
+
+---
+
+## Developer
+
+- **Lead developer**: Islam Al-Nashar
+- **Organization**: Al-Nashar Studio
+- **Year**: 2026
+
+---
+
+## License
+
+Open source under the **MIT License**.
 
 ```
 MIT License
@@ -462,56 +515,12 @@ copies of the Software.
 
 ---
 
-## 🏷️ الوسوم (Tags)
+## Tags
 
-`arabic-programming-language` `lua-arabic` `yaqout-lang` `arabic-coding` 
-`programming-in-arabic` `language-localization` `scripting-language` 
+`arabic-programming-language` `lua-arabic` `yaqout-lang` `arabic-coding`
+`programming-in-arabic` `language-localization` `scripting-language`
 `compilers` `open-source` `education`
 
 ---
 
-</div>
-
----
-
-# 💎 Yaqout Language (English)
-
-### A Full Arabic Programming Language Based on Lua 5.5
-
-**Yaqout** is a powerful and fast scripting language, developed as a full Arabic version of Lua. It aims to empower Arabic developers to write code in their native language while maintaining high performance.
-
-## Main Features
-- **Full Arabic Keywords**: (`إذا`, `إذن`, `دالة`, `محلي`...)
-- **Unicode Support**: Native Arabic variable and function names
-- **Localized Standard Libraries**: Math, String, Table, and OS libraries in Arabic
-- **Custom Extensions**: Supports `.yaqout` and `.yq` files
-- **VS Code Support**: Syntax highlighting and custom icons
-- **100% Lua Compatible**: Run any Lua code
-
-## Quick Start
-```lua
-محلي الاسم = "World"
-اطبع("مرحباً " .. الاسم)
-```
-
-## Installation
-```bash
-# Download yaqout.exe and run:
-yaqout.exe your_script.yq
-```
-
-## Documentation
-- `DOCS_AR.md` - Arabic documentation
-- `YAQOUT_BOOK.md` - Comprehensive learning book
-- `CONTRIBUTING.md` - Contribution guide
-
-## Developer
-- **Lead Developer**: Islam Al-Nashar
-- **Organization**: Al-Nashar Studio
-
-## License
-MIT License - Free for personal and commercial use.
-
----
-
-**معاً نبني مستقبل البرمجة العربية! 🚀**
+**Let's build the future of Arabic programming together!**
