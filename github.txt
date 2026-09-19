@@ -1,5 +1,7 @@
 Description:
+Yaqout is a fully Arabized Lua interpreter with Arabic keywords, Arabic identifiers, and localized standard libraries. 100% Lua compatible. By Islam Al-Nashar (Al-Nashar Studio).
 
+Homepage: https://github.com/aslamalkarywk7/yaqout-langar
 
 Tags:
-arabic-programming-language, lua-arabic, yaqout-lang, arabic-coding, programming-in-arabic, language-localization, islam-al-nashar, al-nashar-studio, scripting-language, compilers
+arabic-programming-language, lua-arabic, yaqout-lang, yaqout, arabic-coding, programming-in-arabic, language-localization, scripting-language, compilers, lua, c99, unicode, rtl, education, open-source
