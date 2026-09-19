@@ -1,93 +1,100 @@
-# 🛠️ دليل بناء لغة ياقوت الشامل
-## Build Guide for Yaqout Programming Language
+# Yaqout Build Guide
+
+## Complete Build Guide for the Yaqout Programming Language
 
 ---
 
-## 📋 جدول المحتويات
-- [المقدمة](#-المقدمة)
-- [المتطلبات الأساسية](#-المتطلبات-الأساسية)
-- [البناء على Windows](#-البناء-على-windows)
-- [البناء على Linux](#-البناء-على-linux)
-- [البناء على macOS](#-البناء-على-macos)
-- [خيارات البناء المتقدمة](#-خيارات-البناء-المتقدمة)
-- [بنية الملفات المصدرية](#-بنية-الملفات-المصدرية)
-- [اختبار البناء](#-اختبار-البناء)
-- [استكشاف الأخطاء](#-استكشاف-الأخطاء)
-- [بناء المكتبة الثابتة](#-بناء-المكتبة-الثابتة)
-- [توزيع الإصدار](#-توزيع-الإصدار)
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Build on Windows](#build-on-windows)
+- [Build on Linux](#build-on-linux)
+- [Build on macOS](#build-on-macos)
+- [Advanced build options](#advanced-build-options)
+- [Source file structure](#source-file-structure)
+- [Testing the build](#testing-the-build)
+- [Troubleshooting](#troubleshooting)
+- [Building the static library](#building-the-static-library)
+- [Release packaging](#release-packaging)
 
 ---
 
-## 📖 المقدمة
+## Introduction
 
-لغة ياقوت مبنية على محرك Lua 5.5 المكتوب بلغة C. عملية البناء بسيطة ولا تتطلب أي مكتبات خارجية معقدة. يمكنك بناء المشروع بأمر واحد فقط!
+Yaqout is built on the Lua 5.5 engine written in C. The build is simple and needs no complex external libraries. You can build it with a single command.
 
-### لماذا يُعتبر البناء سهلاً؟
-- ✅ لا توجد تبعيات خارجية (No External Dependencies)
-- ✅ كود C99 قياسي ونظيف
-- ✅ يعمل على أي مترجم C حديث
-- ✅ حجم الكود المصدري صغير (~1MB)
+### Why is the build easy?
+
+- No external dependencies
+- Clean standard C99 code
+- Works with any modern C compiler
+- Small source (~1MB)
 
 ---
 
-## 📦 المتطلبات الأساسية
+## Prerequisites
 
-### المترجمات المدعومة
+### Supported compilers
 
-| المترجم | الإصدار الأدنى | ملاحظات |
-|---------|---------------|---------|
-| **GCC** | 4.8+ | الموصى به لـ Linux |
-| **MinGW-w64** | 8.0+ | الموصى به لـ Windows |
-| **Clang** | 3.5+ | بديل ممتاز |
+| Compiler | Minimum version | Notes |
+|----------|-----------------|-------|
+| **GCC** | 4.8+ | Recommended for Linux |
+| **MinGW-w64** | 8.0+ | Recommended for Windows |
+| **Clang** | 3.5+ | Good alternative |
 | **MSVC** | 2015+ | Visual Studio |
-| **TCC** | 0.9.27+ | للبناء السريع |
+| **TCC** | 0.9.27+ | Fast builds |
 
-### أدوات إضافية (اختيارية)
+### Extra tools (optional)
 
-| الأداة | الغرض |
-|--------|-------|
-| **Make** | أتمتة البناء |
-| **Git** | إدارة الإصدارات |
-| **CMake** | بناء متعدد المنصات |
+| Tool | Purpose |
+|------|---------|
+| **Make** | Build automation |
+| **Git** | Version management |
+| **CMake** | Multi-platform builds |
 
 ---
 
-## 🪟 البناء على Windows
+## Build on Windows
 
-### الطريقة 1: باستخدام MinGW-w64 (الموصى بها)
+### Method 1: MinGW-w64 (recommended)
 
-#### الخطوة 1: تثبيت MinGW-w64
+#### Step 1: Install MinGW-w64
+
 ```powershell
-# طريقة 1: عبر winget
+# Via winget
 winget install -e --id mingw-w64.mingw-w64
 
-# طريقة 2: عبر Chocolatey
+# Via Chocolatey
 choco install mingw
 
-# طريقة 3: التحميل اليدوي
+# Or manual download:
 # https://www.mingw-w64.org/downloads/
-# اختر: x86_64-posix-seh
+# Choose: x86_64-posix-seh
 ```
 
-#### الخطوة 2: إضافة MinGW للـ PATH
+#### Step 2: Add MinGW to PATH
+
 ```powershell
-# أضف هذا المسار للـ System PATH:
+# Add this path to System PATH:
 # C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin
 
-# للتحقق:
+# Verify:
 gcc --version
 ```
 
-#### الخطوة 3: بناء ياقوت
-```powershell
-# انتقل لمجلد المشروع
-cd C:\Users\GOGO\Desktop\whatsapp-bot\yarout
+#### Step 3: Build Yaqout
 
-# أمر البناء الكامل (سطر واحد)
+```powershell
+# Go to the project folder
+cd C:\path\to\yaqout
+
+# Full build (single line)
 gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c lparser.c lstate.c lstring.c ltable.c ltm.c lundump.c lvm.c lzio.c lauxlib.c lbaselib.c lcorolib.c ldblib.c liolib.c lmathlib.c loslib.c lstrlib.c ltablib.c lutf8lib.c loadlib.c linit.c -lm
 ```
 
-#### الأمر المنسق (للقراءة السهلة):
+Formatted version for readability:
+
 ```powershell
 gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     lua.c ^
@@ -126,18 +133,20 @@ gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     -lm
 ```
 
-### الطريقة 2: باستخدام Visual Studio (MSVC)
+### Method 2: Visual Studio (MSVC)
 
-#### الخطوة 1: فتح Developer Command Prompt
+#### Step 1: Open Developer Command Prompt
+
 ```batch
-# ابحث عن "Developer Command Prompt for VS"
-# أو شغّل:
+:: Search for "Developer Command Prompt for VS"
+:: Or run:
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
 ```
 
-#### الخطوة 2: البناء
+#### Step 2: Build
+
 ```batch
-cd C:\Users\GOGO\Desktop\whatsapp-bot\yarout
+cd C:\path\to\yaqout
 
 cl /O2 /DLUA_USE_WINDOWS /Fe:yaqout.exe ^
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c ^
@@ -148,28 +157,29 @@ cl /O2 /DLUA_USE_WINDOWS /Fe:yaqout.exe ^
     lutf8lib.c loadlib.c linit.c
 ```
 
-### الطريقة 3: سكربت بناء تلقائي
+### Method 3: Automatic build script
 
-أنشئ ملف `build.bat`:
+Create `build.bat`:
+
 ```batch
 @echo off
 echo ====================================
-echo    بناء لغة ياقوت - Yaqout Build
+echo    Yaqout Build
 echo ====================================
 
-:: التحقق من وجود gcc
+:: Check for gcc
 where gcc >nul 2>nul
 if %ERRORLEVEL% neq 0 (
-    echo [خطأ] GCC غير موجود! قم بتثبيت MinGW-w64
+    echo [ERROR] GCC not found! Install MinGW-w64
     pause
     exit /b 1
 )
 
-echo [1/3] تنظيف الملفات القديمة...
+echo [1/3] Cleaning old files...
 if exist yaqout.exe del yaqout.exe
 if exist *.o del *.o
 
-echo [2/3] تجميع الكود المصدري...
+echo [2/3] Compiling sources...
 gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c ^
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c ^
@@ -179,21 +189,21 @@ gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     lutf8lib.c loadlib.c linit.c -lm
 
 if %ERRORLEVEL% neq 0 (
-    echo [خطأ] فشل البناء!
+    echo [ERROR] Build failed!
     pause
     exit /b 1
 )
 
-echo [3/3] التحقق من الناتج...
+echo [3/3] Verifying output...
 if exist yaqout.exe (
     echo.
     echo ====================================
-    echo    تم البناء بنجاح! ✓
+    echo    Build succeeded!
     echo ====================================
     echo.
     yaqout.exe -v
 ) else (
-    echo [خطأ] الملف التنفيذي غير موجود!
+    echo [ERROR] Binary not found!
 )
 
 pause
@@ -201,11 +211,12 @@ pause
 
 ---
 
-## 🐧 البناء على Linux
+## Build on Linux
 
-### الطريقة 1: باستخدام GCC
+### Method 1: GCC
 
-#### تثبيت المتطلبات
+Install requirements:
+
 ```bash
 # Ubuntu/Debian
 sudo apt update
@@ -221,11 +232,12 @@ sudo pacman -S base-devel
 sudo zypper install -t pattern devel_basis
 ```
 
-#### البناء
+Build:
+
 ```bash
 cd ~/yaqout
 
-# البناء البسيط
+# Simple build
 gcc -O2 -std=c99 -DLUA_USE_LINUX -o yaqout \
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c \
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c \
@@ -234,42 +246,44 @@ gcc -O2 -std=c99 -DLUA_USE_LINUX -o yaqout \
     liolib.c lmathlib.c loslib.c lstrlib.c ltablib.c \
     lutf8lib.c loadlib.c linit.c -lm -ldl
 
-# أو باستخدام make
+# Or with make
 make
 ```
 
-### الطريقة 2: باستخدام Make
+### Method 2: Make
 
-الملف `makefile` موجود في المشروع:
+The `makefile` is included:
+
 ```bash
-# بناء كامل
+# Full build
 make
 
-# تنظيف
+# Clean
 make clean
 
-# بناء مع معلومات التنقيح
+# Debug build
 make MYCFLAGS="-g -DLUAI_ASSERT"
 ```
 
-### الطريقة 3: سكربت بناء
+### Method 3: Build script
 
-أنشئ ملف `build.sh`:
+Create `build.sh`:
+
 ```bash
 #!/bin/bash
 
 echo "===================================="
-echo "   بناء لغة ياقوت - Yaqout Build"
+echo "   Yaqout Build"
 echo "===================================="
 
-# التحقق من وجود gcc
+# Check for gcc
 if ! command -v gcc &> /dev/null; then
-    echo "[خطأ] GCC غير موجود!"
-    echo "قم بتثبيته: sudo apt install build-essential"
+    echo "[ERROR] GCC not found!"
+    echo "Install it: sudo apt install build-essential"
     exit 1
 fi
 
-# تحديد النظام
+# Detect platform
 UNAME=$(uname -s)
 case "$UNAME" in
     Linux*)  PLATFORM="-DLUA_USE_LINUX"; LIBS="-lm -ldl";;
@@ -277,10 +291,10 @@ case "$UNAME" in
     *)       PLATFORM=""; LIBS="-lm";;
 esac
 
-echo "[1/3] تنظيف الملفات القديمة..."
+echo "[1/3] Cleaning old files..."
 rm -f yaqout *.o
 
-echo "[2/3] تجميع الكود المصدري..."
+echo "[2/3] Compiling sources..."
 gcc -O2 -std=c99 $PLATFORM -o yaqout \
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c \
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c \
@@ -290,49 +304,50 @@ gcc -O2 -std=c99 $PLATFORM -o yaqout \
     lutf8lib.c loadlib.c linit.c $LIBS
 
 if [ $? -ne 0 ]; then
-    echo "[خطأ] فشل البناء!"
+    echo "[ERROR] Build failed!"
     exit 1
 fi
 
-echo "[3/3] التحقق من الناتج..."
+echo "[3/3] Verifying output..."
 if [ -f yaqout ]; then
     echo ""
     echo "===================================="
-    echo "   تم البناء بنجاح! ✓"
+    echo "   Build succeeded!"
     echo "===================================="
     echo ""
     chmod +x yaqout
     ./yaqout -v
 else
-    echo "[خطأ] الملف التنفيذي غير موجود!"
+    echo "[ERROR] Binary not found!"
     exit 1
 fi
 ```
 
 ```bash
-# تشغيل السكربت
 chmod +x build.sh
 ./build.sh
 ```
 
 ---
 
-## 🍎 البناء على macOS
+## Build on macOS
 
-### تثبيت المتطلبات
+Install requirements:
+
 ```bash
-# تثبيت Xcode Command Line Tools
+# Xcode Command Line Tools
 xcode-select --install
 
-# أو تثبيت GCC عبر Homebrew
+# Or GCC via Homebrew
 brew install gcc
 ```
 
-### البناء
+Build:
+
 ```bash
 cd ~/yaqout
 
-# باستخدام Clang (الافتراضي)
+# With Clang (default)
 clang -O2 -std=c99 -DLUA_USE_MACOSX -o yaqout \
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c \
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c \
@@ -341,224 +356,215 @@ clang -O2 -std=c99 -DLUA_USE_MACOSX -o yaqout \
     liolib.c lmathlib.c loslib.c lstrlib.c ltablib.c \
     lutf8lib.c loadlib.c linit.c -lm
 
-# أو باستخدام make
+# Or with make
 make macosx
 ```
 
 ---
 
-## ⚙️ خيارات البناء المتقدمة
+## Advanced build options
 
-### أعلام التحسين (Optimization Flags)
+### Optimization flags
 
-| العلم | الوصف | الاستخدام |
-|-------|-------|-----------|
-| `-O0` | بدون تحسين | للتنقيح |
-| `-O1` | تحسين خفيف | توازن |
-| `-O2` | تحسين قياسي | **الموصى به** |
-| `-O3` | تحسين أقصى | أداء عالي |
-| `-Os` | تحسين للحجم | ملف صغير |
+| Flag | Description | Use |
+|------|-------------|-----|
+| `-O0` | No optimization | Debugging |
+| `-O1` | Light optimization | Balance |
+| `-O2` | Standard optimization | **Recommended** |
+| `-O3` | Max optimization | High performance |
+| `-Os` | Size optimization | Small binary |
 
-### أعلام التنقيح (Debug Flags)
+### Debug flags
 
 ```bash
-# بناء للتنقيح
+# Debug build
 gcc -g -O0 -DLUAI_ASSERT -std=c99 -o yaqout_debug ...
 
-# بناء مع معلومات التنقيح الكاملة
+# Full debug info
 gcc -g3 -ggdb -O0 -DLUAI_ASSERT -DLUA_USE_APICHECK -std=c99 -o yaqout_debug ...
 ```
 
-### تعريفات المنصة (Platform Defines)
+### Platform defines
 
-| التعريف | المنصة |
-|---------|--------|
+| Define | Platform |
+|--------|----------|
 | `-DLUA_USE_WINDOWS` | Windows |
 | `-DLUA_USE_LINUX` | Linux |
 | `-DLUA_USE_MACOSX` | macOS |
-| `-DLUA_USE_POSIX` | POSIX عام |
-| `-DLUA_USE_C89` | توافق C89 |
+| `-DLUA_USE_POSIX` | Generic POSIX |
+| `-DLUA_USE_C89` | C89 compatibility |
 
-### تعريفات خاصة
+### Special defines
 
 ```bash
-# تفعيل جميع الفحوصات الداخلية
+# All internal checks
 -DLUAI_ASSERT
 
-# فحص API
+# API check
 -DLUA_USE_APICHECK
 
-# اختبارات الذاكرة الصعبة
+# Hard memory tests
 -DHARDMEMTESTS
 
-# اختبارات المكدس الصعبة
+# Hard stack tests
 -DHARDSTACKTESTS
 
-# التوافق مع Lua 5.3
+# Lua 5.3 compatibility
 -DLUA_COMPAT_5_3
 ```
 
-### بناء 32-bit vs 64-bit
+### 32-bit vs 64-bit
 
 ```bash
-# بناء 32-bit
+# 32-bit
 gcc -m32 -O2 -std=c99 -o yaqout32 ...
 
-# بناء 64-bit (الافتراضي على أنظمة 64-bit)
+# 64-bit (default on 64-bit systems)
 gcc -m64 -O2 -std=c99 -o yaqout64 ...
 ```
 
 ---
 
-## 📁 بنية الملفات المصدرية
+## Source file structure
 
-### الملفات الأساسية (Core Files)
+### Core files
 
 ```
-📂 Core (النواة)
-├── lua.c          # نقطة الدخول الرئيسية (main)
-├── lua.h          # الـ Header العام
-├── luaconf.h      # إعدادات التهيئة
-├── lualib.h       # تعريفات المكتبات
-├── lauxlib.c      # مكتبة مساعدة
+Core
+├── lua.c          # Main entry point
+├── lua.h          # Public header
+├── luaconf.h      # Build config
+├── lualib.h       # Library definitions
+├── lauxlib.c      # Auxiliary library
 └── lauxlib.h
 ```
 
-### الملفات اللغوية (Language Files)
+### Language files (lexer and parser)
 
 ```
-📂 Lexer & Parser (المحلل اللغوي والنحوي)
-├── llex.c         # ⭐ المحلل اللغوي (الكلمات المفتاحية العربية)
+Lexer and parser
+├── llex.c         # Lexer (Arabic keywords)
 ├── llex.h
-├── lctype.c       # ⭐ أنواع الحروف (دعم العربية)
+├── lctype.c       # Character types (Arabic support)
 ├── lctype.h
-├── lparser.c      # المحلل النحوي
+├── lparser.c      # Parser
 ├── lparser.h
-├── lcode.c        # توليد الـ Bytecode
+├── lcode.c        # Bytecode generation
 └── lcode.h
 ```
 
-### الآلة الافتراضية (Virtual Machine)
+### Virtual machine
 
 ```
-📂 VM (الآلة الافتراضية)
-├── lvm.c          # تنفيذ التعليمات
+VM
+├── lvm.c          # Instruction execution
 ├── lvm.h
-├── lopcodes.c     # تعريفات الأوامر
+├── lopcodes.c     # Opcode definitions
 ├── lopcodes.h
-├── lopnames.h     # أسماء الأوامر
-└── ljumptab.h     # جدول القفز
+├── lopnames.h     # Opcode names
+└── ljumptab.h     # Jump table
 ```
 
-### إدارة الذاكرة (Memory Management)
+### Memory management
 
 ```
-📂 Memory (الذاكرة)
-├── lmem.c         # إدارة الذاكرة
+Memory
+├── lmem.c         # Memory management
 ├── lmem.h
-├── lgc.c          # جامع المخلفات
+├── lgc.c          # Garbage collector
 ├── lgc.h
-├── lstate.c       # حالة المترجم
+├── lstate.c       # Interpreter state
 └── lstate.h
 ```
 
-### المكتبات القياسية (Standard Libraries)
+### Standard libraries (localized)
 
 ```
-📂 Libraries (المكتبات) ⭐ معربة
-├── lbaselib.c     # الدوال الأساسية (اطبع، نوع...)
-├── lmathlib.c     # مكتبة الرياضيات
-├── lstrlib.c      # مكتبة النصوص
-├── ltablib.c      # مكتبة الجداول
-├── liolib.c       # الإدخال/الإخراج
-├── loslib.c       # مكتبة النظام
-├── lcorolib.c     # الروتينات المساعدة
-├── ldblib.c       # مكتبة التنقيح
-├── lutf8lib.c     # مكتبة UTF-8
-├── loadlib.c      # تحميل المكتبات
-└── linit.c        # تهيئة المكتبات
+Libraries (localized)
+├── lbaselib.c     # Base functions (print, type...)
+├── lmathlib.c     # Math library
+├── lstrlib.c      # String library
+├── ltablib.c      # Table library
+├── liolib.c       # IO
+├── loslib.c       # OS library
+├── lcorolib.c     # Coroutines
+├── ldblib.c       # Debug library
+├── lutf8lib.c     # UTF-8 library
+├── loadlib.c      # Library loading
+└── linit.c        # Library init
 ```
 
-### ملفات أخرى
+### Other files
 
 ```
-📂 Other (أخرى)
-├── lobject.c      # الكائنات الداخلية
-├── lobject.h
-├── lstring.c      # إدارة النصوص
-├── lstring.h
-├── ltable.c       # إدارة الجداول
-├── ltable.h
-├── lfunc.c        # إدارة الدوال
-├── lfunc.h
-├── ltm.c          # الـ Tag Methods
-├── ltm.h
-├── ldebug.c       # معلومات التنقيح
-├── ldebug.h
-├── ldo.c          # الاستدعاءات
-├── ldo.h
-├── ldump.c        # تصدير الـ Bytecode
-├── lundump.c      # استيراد الـ Bytecode
-├── lundump.h
-├── lzio.c         # واجهة الإدخال
-├── lzio.h
-├── llimits.h      # الحدود والثوابت
-├── lprefix.h      # بادئات النظام
-└── ltests.c       # اختبارات داخلية
+Other
+├── lobject.c / lobject.h
+├── lstring.c / lstring.h
+├── ltable.c / ltable.h
+├── lfunc.c / lfunc.h
+├── ltm.c / ltm.h
+├── ldebug.c / ldebug.h
+├── ldo.c / ldo.h
+├── ldump.c / lundump.c / lundump.h
+├── lzio.c / lzio.h
+├── llimits.h
+├── lprefix.h
+└── ltests.c       # Internal tests
 ```
 
 ---
 
-## 🧪 اختبار البناء
+## Testing the build
 
-### اختبار سريع
+### Quick test
 
 ```bash
-# تحقق من الإصدار
+# Check version
 ./yaqout -v
-# أو على Windows
+# Windows:
 yaqout.exe -v
 
-# الناتج المتوقع:
+# Expected output:
 # Yaqout 5.5 (based on Lua 5.5)
 ```
 
-### اختبار تفاعلي
+### Interactive test
 
 ```bash
 ./yaqout
-# ثم اكتب:
-اطبع("مرحباً بالعالم!")
-# Ctrl+D للخروج (Linux/Mac) أو Ctrl+Z (Windows)
+# Then type:
+اطبع("Hello world!")
+# Ctrl+D to exit (Linux/Mac) or Ctrl+Z (Windows)
 ```
 
-### اختبار ملف
+### File test
 
 ```bash
-# أنشئ ملف اختبار
-echo 'اطبع("البناء ناجح!")' > test.yq
+# Create a test file
+echo 'اطبع("Build works!")' > test.yq
 
-# شغّل الملف
+# Run it
 ./yaqout test.yq
 ```
 
-### اختبارات شاملة
+### Full tests
 
 ```bash
-# تشغيل جميع الاختبارات
+# All tests
 ./yaqout testes/all.lua
 
-# اختبار محدد
+# Single suites
 ./yaqout testes/strings.lua
 ./yaqout testes/math.lua
 ./yaqout testes/api.lua
 ```
 
-### اختبار الكلمات العربية
+### Arabic keyword test
 
-أنشئ ملف `test_arabic.yq`:
+Create `test_arabic.yq`:
+
 ```lua
--- اختبار الكلمات المفتاحية العربية
+-- Arabic keyword test
 محلي س = 10
 محلي ص = 20
 
@@ -567,15 +573,15 @@ echo 'اطبع("البناء ناجح!")' > test.yq
 نهاية
 
 إذا س < ص إذن
-    اطبع("س أصغر من ص")
+    اطبع("س is smaller than ص")
 نهاية
 
 لكل ي = 1, 5 افعل
-    اطبع("العدد: " .. ي)
+    اطبع("Number: " .. ي)
 نهاية
 
-اطبع("نتيجة الجمع: " .. جمع(س, ص))
-اطبع("اختبار ناجح! ✓")
+اطبع("Sum: " .. جمع(س, ص))
+اطبع("Test passed!")
 ```
 
 ```bash
@@ -584,66 +590,59 @@ echo 'اطبع("البناء ناجح!")' > test.yq
 
 ---
 
-## 🔧 استكشاف الأخطاء
+## Troubleshooting
 
-### خطأ: `gcc: command not found`
+### Error: `gcc: command not found`
 
 ```bash
-# Windows
-# تأكد من إضافة MinGW\bin للـ PATH
-
-# Linux
+# Windows: add MinGW\bin to PATH
+# Linux:
 sudo apt install build-essential
-
-# macOS
+# macOS:
 xcode-select --install
 ```
 
-### خطأ: `undefined reference to 'dlopen'`
+### Error: `undefined reference to 'dlopen'`
 
 ```bash
-# أضف -ldl للأمر
+# Add -ldl
 gcc ... -lm -ldl
 ```
 
-### خطأ: `cannot find -lm`
+### Error: `cannot find -lm`
 
 ```bash
 # Linux
 sudo apt install libc6-dev
-
-# تأكد أن المكتبة موجودة
 ls /usr/lib/x86_64-linux-gnu/libm.*
 ```
 
-### خطأ: `llex.c: invalid multibyte character`
+### Error: `llex.c: invalid multibyte character`
 
 ```bash
-# تأكد من ترميز الملفات UTF-8
+# Check UTF-8 encoding
 file llex.c
-# يجب أن يظهر: UTF-8 Unicode text
+# Expected: UTF-8 Unicode text
 
-# إذا كان الترميز خاطئ:
+# Fix wrong encoding:
 iconv -f ISO-8859-1 -t UTF-8 llex.c > llex_utf8.c
 mv llex_utf8.c llex.c
 ```
 
-### خطأ: `Windows.h not found` (MSVC)
+### Error: `Windows.h not found` (MSVC)
 
 ```batch
-:: استخدم Developer Command Prompt
-:: وليس PowerShell أو CMD العادي
+:: Use Developer Command Prompt, not plain PowerShell/CMD
 ```
 
-### تحذير: `-Wconversion`
+### Warning: `-Wconversion`
 
 ```bash
-# هذه تحذيرات عادية في كود Lua
-# يمكن تجاهلها أو إضافة:
+# Normal warnings in Lua code, safe to ignore or:
 gcc -Wno-conversion ...
 ```
 
-### الحروف العربية لا تظهر
+### Arabic letters do not display
 
 ```bash
 # Windows CMD
@@ -658,12 +657,12 @@ export LANG=en_US.UTF-8
 
 ---
 
-## 📚 بناء المكتبة الثابتة
+## Building the static library
 
-### بناء liblua.a (Static Library)
+### Build libyaqout.a
 
 ```bash
-# الخطوة 1: تجميع ملفات الكائنات
+# Step 1: object files
 gcc -c -O2 -std=c99 -DLUA_USE_LINUX \
     lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c \
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c \
@@ -672,14 +671,14 @@ gcc -c -O2 -std=c99 -DLUA_USE_LINUX \
     liolib.c lmathlib.c loslib.c lstrlib.c ltablib.c \
     lutf8lib.c loadlib.c linit.c
 
-# الخطوة 2: إنشاء المكتبة الثابتة
+# Step 2: static library
 ar rcs libyaqout.a *.o
 
-# الخطوة 3: اختبار الربط
+# Step 3: link test
 gcc -o yaqout lua.c -L. -lyaqout -lm -ldl
 ```
 
-### بناء المكتبة المشتركة (Shared Library)
+### Shared library
 
 ```bash
 # Linux
@@ -700,35 +699,33 @@ gcc -shared -O2 -std=c99 -DLUA_USE_WINDOWS -DLUA_BUILD_AS_DLL \
 
 ---
 
-## 📦 توزيع الإصدار
+## Release packaging
 
-### هيكل حزمة التوزيع
+### Package layout
 
 ```
-📦 yaqout-1.0-win64/
-├── yaqout.exe           # الملف التنفيذي
-├── library.yq           # المكتبات الإضافية
-├── README.md            # التوثيق
-├── LICENSE              # الترخيص
-├── examples/            # أمثلة
+yaqout-1.0-win64/
+├── yaqout.exe           # Binary
+├── library.yq           # Extra libraries
+├── README.md            # Docs
+├── LICENSE              # License
+├── examples/            # Examples
 │   ├── hello.yq
 │   ├── calculator.yq
 │   └── game.yq
-└── vscode-yaqout/       # إضافة VS Code
+└── vscode-yaqout/       # VS Code extension
 ```
 
-### سكربت إنشاء الحزمة
+### Packaging script
 
 ```bash
 #!/bin/bash
 VERSION="1.0"
 PLATFORM="linux64"
 
-# إنشاء المجلد
 mkdir -p "yaqout-${VERSION}-${PLATFORM}"
 cd "yaqout-${VERSION}-${PLATFORM}"
 
-# نسخ الملفات
 cp ../yaqout .
 cp ../library.yq .
 cp ../README.md .
@@ -736,19 +733,18 @@ cp ../LICENSE .
 cp -r ../examples .
 cp -r ../vscode-yaqout .
 
-# ضغط الحزمة
 cd ..
 tar -czvf "yaqout-${VERSION}-${PLATFORM}.tar.gz" "yaqout-${VERSION}-${PLATFORM}"
 
-echo "تم إنشاء الحزمة: yaqout-${VERSION}-${PLATFORM}.tar.gz"
+echo "Package created: yaqout-${VERSION}-${PLATFORM}.tar.gz"
 ```
 
 ---
 
-## 📊 جدول ملخص أوامر البناء
+## Build command summary
 
-| النظام | الأمر |
-|--------|-------|
+| System | Command |
+|--------|---------|
 | **Windows (MinGW)** | `gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe *.c -lm` |
 | **Linux** | `gcc -O2 -std=c99 -DLUA_USE_LINUX -o yaqout *.c -lm -ldl` |
 | **macOS** | `clang -O2 -std=c99 -DLUA_USE_MACOSX -o yaqout *.c -lm` |
@@ -756,19 +752,21 @@ echo "تم إنشاء الحزمة: yaqout-${VERSION}-${PLATFORM}.tar.gz"
 
 ---
 
-## 🎉 الخلاصة
+## Summary
 
-بناء لغة ياقوت عملية بسيطة تتطلب:
-1. ✅ مترجم C (GCC/Clang/MSVC)
-2. ✅ أمر واحد للبناء
-3. ✅ لا توجد تبعيات خارجية
+Building Yaqout needs:
 
-**للمساعدة أو الإبلاغ عن مشاكل:**
-- افتح Issue على GitHub
-- راجع ملف `CONTRIBUTING.md`
+1. A C compiler (GCC/Clang/MSVC)
+2. One build command
+3. No external dependencies
+
+**Help or bug reports:**
+
+- Open a GitHub Issue
+- See CONTRIBUTING.md
 
 ---
 
-**تم إعداد هذا الدليل بواسطة:**
-**إسلام النشار - ستوديو النشار**
-**الإصدار: 1.0 | فبراير 2026**
+**Prepared by:**
+**Islam Al-Nashar - Al-Nashar Studio**
+**Version: 1.0 | February 2026**

@@ -1,121 +1,129 @@
-# 🤝 دليل المساهمة في لغة ياقوت
-## كيف تساهم في تطوير أول لغة برمجة عربية احترافية
+# Contributing to Yaqout
+
+## How to contribute to the first professional Arabic programming language
 
 ---
 
-## 📋 جدول المحتويات
-- [مقدمة](#-مقدمة)
-- [لماذا تساهم في ياقوت؟](#-لماذا-تساهم-في-ياقوت)
-- [البنية التقنية للمشروع](#-البنية-التقنية-للمشروع)
-- [إعداد بيئة التطوير](#-إعداد-بيئة-التطوير)
-- [خطوات المساهمة عبر GitHub](#-خطوات-المساهمة-عبر-github)
-- [أنواع المساهمات المطلوبة](#-أنواع-المساهمات-المطلوبة)
-- [إرشادات كتابة الكود](#-إرشادات-كتابة-الكود)
-- [الأسئلة الشائعة](#-الأسئلة-الشائعة-faq)
-- [الأخطاء الشائعة وحلولها](#-الأخطاء-الشائعة-وحلولها)
-- [الثغرات المعروفة](#-الثغرات-المعروفة)
-- [التواصل والدعم](#-التواصل-والدعم)
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Why contribute to Yaqout](#why-contribute-to-yaqout)
+- [Technical structure](#technical-structure)
+- [Development setup](#development-setup)
+- [GitHub contribution steps](#github-contribution-steps)
+- [Needed contribution types](#needed-contribution-types)
+- [Code style](#code-style)
+- [FAQ](#faq)
+- [Common errors](#common-errors)
+- [Known issues](#known-issues)
+- [Contact and support](#contact-and-support)
 
 ---
 
-## 🎯 مقدمة
+## Introduction
 
-**ياقوت** ليست مجرد ترجمة للغة Lua، بل هي مشروع طموح يهدف لإنشاء بيئة برمجة عربية متكاملة. نحن نؤمن بأن كل مطور عربي لديه ما يقدمه لهذا المشروع، سواء كان ذلك في:
-- تحسين الترجمة والتعريب
-- إضافة مكتبات جديدة
-- كتابة التوثيق والأمثلة
-- اختبار اللغة والإبلاغ عن الأخطاء
-- تحسين الأداء وإصلاح الثغرات
+**Yaqout** is not just a translation of Lua — it is an ambitious project to build a complete Arabic programming environment. Every Arab developer has something to offer, whether it is:
 
----
-
-## 💡 لماذا تساهم في ياقوت؟
-
-### المميزات التي ستكتسبها:
-1. **خبرة في تطوير المترجمات (Compilers)**: ستتعلم كيف تعمل لغات البرمجة من الداخل
-2. **المساهمة في مشروع مفتوح المصدر**: يمكنك إضافة هذه الخبرة لسيرتك الذاتية
-3. **دعم المجتمع العربي**: تساهم في كسر حاجز اللغة أمام المبرمجين المبتدئين
-4. **تعلم لغة C**: المشروع مبني بالكامل بلغة C، مما يمنحك خبرة عملية
-5. **العمل مع codebase حقيقي**: ستتعامل مع كود Lua الشهير عالمياً
-
-### إحصائيات المشروع:
-- **اللغة الأساسية**: C99
-- **عدد ملفات المصدر**: 50+ ملف
-- **حجم الكود**: 400+ KB
-- **المكتبات المعربة**: 7 مكتبات قياسية
+- Improving translation and localization
+- Adding new libraries
+- Writing docs and examples
+- Testing the language and reporting bugs
+- Improving performance and fixing vulnerabilities
 
 ---
 
-## 🏗️ البنية التقنية للمشروع
+## Why contribute to Yaqout?
 
-### هيكل الملفات الرئيسية:
+### What you gain:
+
+1. **Compiler experience**: you learn how programming languages work internally
+2. **Open-source credit**: you can add this experience to your CV
+3. **Arab community support**: you help break the language barrier for beginners
+4. **C practice**: the project is fully built in C
+5. **Real codebase work**: you work with the world-famous Lua code
+
+### Project stats:
+
+- **Core language**: C99
+- **Source files**: 50+ files
+- **Code size**: 400+ KB
+- **Localized libraries**: 7 standard libraries
+
+---
+
+## Technical structure
+
+### Main file layout:
 
 ```
 yarout/
-├── 📄 الملفات الأساسية (Core)
-│   ├── lua.c          # نقطة الدخول الرئيسية
-│   ├── lua.h          # الـ Header الرئيسي
-│   ├── luaconf.h      # إعدادات التهيئة
-│   └── lualib.h       # تعريفات المكتبات
+├── Core files
+│   ├── lua.c          # Main entry point
+│   ├── lua.h          # Main header
+│   ├── luaconf.h      # Config
+│   └── lualib.h       # Library definitions
 │
-├── 🔤 المحلل اللغوي (Lexer)
-│   ├── llex.c         # ⭐ الكلمات المفتاحية العربية
+├── Lexer
+│   ├── llex.c         # Arabic keywords
 │   ├── llex.h
-│   └── lctype.c       # ⭐ دعم الحروف العربية
+│   └── lctype.c       # Arabic character support
 │
-├── 🌳 المحلل النحوي (Parser)
-│   ├── lparser.c      # تحليل البنية النحوية
+├── Parser
+│   ├── lparser.c      # Syntax analysis
 │   ├── lparser.h
-│   ├── lcode.c        # توليد الكود الوسيط
+│   ├── lcode.c        # Intermediate code generation
 │   └── lcode.h
 │
-├── ⚙️ الآلة الافتراضية (VM)
-│   ├── lvm.c          # تنفيذ التعليمات
+├── VM
+│   ├── lvm.c          # Instruction execution
 │   ├── lvm.h
-│   ├── lopcodes.c     # أوامر الآلة الافتراضية
+│   ├── lopcodes.c     # VM opcodes
 │   └── lopcodes.h
 │
-├── 📚 المكتبات المعربة
-│   ├── lbaselib.c     # ⭐ الدوال الأساسية (اطبع، نوع...)
-│   ├── lmathlib.c     # ⭐ مكتبة الرياضيات
-│   ├── lstrlib.c      # ⭐ مكتبة النصوص
-│   ├── ltablib.c      # ⭐ مكتبة الجداول
-│   ├── liolib.c       # ⭐ مكتبة الإدخال/الإخراج
-│   ├── loslib.c       # ⭐ مكتبة النظام
-│   └── lcorolib.c     # مكتبة الروتينات المساعدة
+├── Localized libraries
+│   ├── lbaselib.c     # Base functions
+│   ├── lmathlib.c     # Math library
+│   ├── lstrlib.c      # String library
+│   ├── ltablib.c      # Table library
+│   ├── liolib.c       # IO library
+│   ├── loslib.c       # OS library
+│   └── lcorolib.c     # Coroutine library
 │
-├── 🗃️ إدارة الذاكرة
-│   ├── lmem.c         # إدارة الذاكرة
-│   ├── lgc.c          # جامع المخلفات
-│   └── lstate.c       # حالة المترجم
+├── Memory management
+│   ├── lmem.c         # Memory management
+│   ├── lgc.c          # Garbage collector
+│   └── lstate.c       # Interpreter state
 │
-├── 📝 التوثيق
+├── Docs
 │   ├── README.md
 │   ├── CONTRIBUTING.md
-│   ├── DOCS_AR.md
-│   └── YAQOUT_BOOK.md
+│   ├── YAQOUT_BOOK.md
+│   └── build.md
 │
-└── 🧪 الاختبارات
-    └── testes/        # ملفات الاختبار
+└── Tests
+    └── testes/        # Test files
 ```
 
-### كيف تعمل الترجمة العربية؟
+### How does Arabic translation work?
 
-#### 1. الكلمات المفتاحية (في `llex.c`):
+#### 1. Keywords (in `llex.c`):
+
 ```c
 static const char *const luaX_tokens [] = {
     "و", "اكسر", "افعل", "وإلا", "وإلا_إذا",
     "نهاية", "خطأ", "لكل", "دالة", "عام", "اذهب_إلى", "إذا",
     "في", "محلي", "لاشيء", "ليس", "أو", "كرر",
     "رجع", "إذن", "صح", "حتى", "طالما",
-    // ... العمليات
+    // ... operators
 };
 ```
 
-#### 2. دعم الأحرف العربية (في `lctype.c`):
-يتم التعرف على الحروف العربية كمعرفات صالحة (Identifiers).
+#### 2. Arabic character support (in `lctype.c`):
 
-#### 3. تعريب الدوال (في `lbaselib.c`):
+Arabic letters are recognized as valid identifiers.
+
+#### 3. Localized functions (in `lbaselib.c`):
+
 ```c
 static const luaL_Reg base_funcs[] = {
     {"اطبع", luaB_print},
@@ -128,28 +136,29 @@ static const luaL_Reg base_funcs[] = {
 
 ---
 
-## 🔧 إعداد بيئة التطوير
+## Development setup
 
-### المتطلبات:
-| الأداة | الوصف | التحميل |
-|--------|-------|---------|
-| **GCC/MinGW** | مترجم C | [mingw-w64.org](https://www.mingw-w64.org/) |
-| **Git** | نظام التحكم بالإصدارات | [git-scm.com](https://git-scm.com/) |
-| **VS Code** | محرر الأكواد (اختياري) | [code.visualstudio.com](https://code.visualstudio.com/) |
+### Requirements:
 
-### خطوات الإعداد على Windows:
+| Tool | Description | Download |
+|------|-------------|----------|
+| **GCC/MinGW** | C compiler | [mingw-w64.org](https://www.mingw-w64.org/) |
+| **Git** | Version control | [git-scm.com](https://git-scm.com/) |
+| **VS Code** | Code editor (optional) | [code.visualstudio.com](https://code.visualstudio.com/) |
+
+### Setup on Windows:
 
 ```bash
-# 1. تثبيت MinGW-w64 وإضافته للـ PATH
+# 1. Install MinGW-w64 and add it to PATH
 
-# 2. التحقق من التثبيت
+# 2. Verify installation
 gcc --version
 
-# 3. استنساخ المشروع
-git clone https://github.com/[username]/yaqout.git
-cd yaqout
+# 3. Clone the project
+git clone https://github.com/aslamalkarywk7/yaqout-langar.git
+cd yaqout-langar
 
-# 4. تجميع المشروع
+# 4. Build the project
 gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     lua.c lapi.c lcode.c lctype.c ldebug.c ldo.c ldump.c ^
     lfunc.c lgc.c llex.c lmem.c lobject.c lopcodes.c ^
@@ -158,178 +167,192 @@ gcc -O2 -std=c99 -DLUA_USE_WINDOWS -o yaqout.exe ^
     liolib.c lmathlib.c loslib.c lstrlib.c ltablib.c ^
     lutf8lib.c loadlib.c linit.c -lm
 
-# 5. اختبار التجميع
+# 5. Test the build
 .\yaqout.exe -v
 ```
 
-### خطوات الإعداد على Linux/Mac:
+### Setup on Linux/Mac:
 
 ```bash
-# 1. تثبيت المتطلبات
+# 1. Install requirements
 sudo apt install build-essential  # Ubuntu/Debian
-# أو
+# or
 brew install gcc  # macOS
 
-# 2. استنساخ المشروع
-git clone https://github.com/[username]/yaqout.git
-cd yaqout
+# 2. Clone the project
+git clone https://github.com/aslamalkarywk7/yaqout-langar.git
+cd yaqout-langar
 
-# 3. تجميع باستخدام make
+# 3. Build with make
 make
 
-# 4. اختبار
+# 4. Test
 ./yaqout -v
 ```
 
 ---
 
-## 🚀 خطوات المساهمة عبر GitHub
+## GitHub contribution steps
 
-### الطريقة الصحيحة للمساهمة:
+### The right way to contribute:
 
-#### الخطوة 1: Fork المشروع
-1. اذهب لصفحة المشروع على GitHub
-2. اضغط زر **Fork** في أعلى اليمين
-3. اختر حسابك الشخصي
+#### Step 1: Fork the project
 
-#### الخطوة 2: Clone المشروع
+1. Go to the GitHub project page
+2. Click **Fork** at the top right
+3. Choose your personal account
+
+#### Step 2: Clone the project
+
 ```bash
-git clone https://github.com/[حسابك]/yaqout.git
-cd yaqout
+git clone https://github.com/[your-account]/yaqout-langar.git
+cd yaqout-langar
 ```
 
-#### الخطوة 3: إنشاء فرع جديد
+#### Step 3: Create a new branch
+
 ```bash
-# نمط التسمية: نوع/وصف-قصير
-git checkout -b feature/اضافة-دالة-جديدة
-# أو
-git checkout -b fix/اصلاح-خطأ-الطباعة
-# أو
-git checkout -b docs/تحسين-التوثيق
+# Naming: type/short-description (English, kebab-case)
+git checkout -b feature/add-new-function
+# or
+git checkout -b fix/printing-bug
+# or
+git checkout -b docs/improve-docs
 ```
 
-#### الخطوة 4: إجراء التعديلات
+#### Step 4: Make changes
+
 ```bash
-# تعديل الملفات المطلوبة
+# Edit the needed files
 # ...
 
-# إضافة التعديلات
+# Stage changes
 git add .
 
-# حفظ التعديلات مع رسالة واضحة
-git commit -m "feat: إضافة دالة حساب_المساحة للمكتبة الهندسية"
+# Commit with a clear message
+git commit -m "feat: add area calculation helper"
 ```
 
-#### الخطوة 5: رفع التعديلات
+#### Step 5: Push changes
+
 ```bash
-git push origin feature/اضافة-دالة-جديدة
+git push origin feature/add-new-function
 ```
 
-#### الخطوة 6: إنشاء Pull Request
-1. اذهب لصفحة مشروعك على GitHub
-2. اضغط **Compare & pull request**
-3. اكتب وصفاً تفصيلياً للتعديلات
-4. اضغط **Create pull request**
+#### Step 6: Create a Pull Request
 
-### قالب Pull Request المثالي:
+1. Go to your project page on GitHub
+2. Click **Compare & pull request**
+3. Write a detailed description
+4. Click **Create pull request**
+
+### Ideal Pull Request template:
 
 ```markdown
-## وصف التعديل
-[اشرح ما قمت بتعديله ولماذا]
+## Description
+[Explain what you changed and why]
 
-## نوع التعديل
-- [ ] ميزة جديدة (Feature)
-- [ ] إصلاح خطأ (Bug Fix)
-- [ ] تحسين الأداء (Performance)
-- [ ] تحسين التوثيق (Documentation)
+## Change type
+- [ ] New feature
+- [ ] Bug fix
+- [ ] Performance improvement
+- [ ] Documentation improvement
 
-## الملفات المعدلة
-- `lbaselib.c` - إضافة دالة جديدة
-- `DOCS_AR.md` - توثيق الدالة
+## Changed files
+- `lbaselib.c` - new function
+- `README.md` - document the function
 
-## كيفية الاختبار
-1. قم بتجميع المشروع
-2. شغل الأمر: `yaqout.exe test.yq`
-3. يجب أن ترى النتيجة: ...
-
-## لقطات شاشة (إن وجدت)
-[أضف صور إن لزم الأمر]
+## How to test
+1. Build the project
+2. Run: `yaqout.exe test.yq`
+3. Expected result: ...
 ```
 
 ---
 
-## 📝 أنواع المساهمات المطلوبة
+## Needed contribution types
 
-### 1. 🌐 تعريب المكتبات (الأولوية: عالية)
-**المكتبات التي تحتاج تعريباً:**
-- `lcorolib.c` - مكتبة الروتينات المساعدة
-- `ldblib.c` - مكتبة التنقيح
+### 1. Library localization (priority: high)
 
-**مثال على التعريب:**
+Libraries needing localization:
+
+- `lcorolib.c` - coroutine library
+- `ldblib.c` - debug library
+
+Localization example:
+
 ```c
-// قبل
+// Before
 {"create", luaB_cocreate},
 
-// بعد
+// After
 {"إنشاء", luaB_cocreate},
-{"create", luaB_cocreate}, // للتوافق
+{"create", luaB_cocreate}, // for compatibility
 ```
 
-### 2. 📖 كتابة التوثيق (الأولوية: عالية)
-- توثيق الدوال المعربة
-- كتابة أمثلة تعليمية
-- ترجمة رسائل الأخطاء
+### 2. Documentation (priority: high)
 
-### 3. 🧪 كتابة الاختبارات (الأولوية: متوسطة)
-- اختبار الكلمات المفتاحية العربية
-- اختبار المكتبات المعربة
-- اختبار ملفات `.yq`
+- Document localized functions
+- Write tutorials and examples
+- Translate error messages
 
-### 4. 🐛 إصلاح الأخطاء (الأولوية: عالية)
-- مراجعة الـ Issues على GitHub
-- إصلاح الأخطاء المبلغ عنها
+### 3. Tests (priority: medium)
 
-### 5. ⚡ تحسين الأداء (الأولوية: منخفضة)
-- تحسين سرعة المترجم
-- تقليل استهلاك الذاكرة
+- Test Arabic keywords
+- Test localized libraries
+- Test `.yq` files
 
-### 6. 🎨 تطوير إضافة VS Code (الأولوية: متوسطة)
-- تحسين تلوين الكود
-- إضافة الإكمال التلقائي
+### 4. Bug fixes (priority: high)
+
+- Check GitHub Issues
+- Fix reported bugs
+
+### 5. Performance (priority: low)
+
+- Improve interpreter speed
+- Reduce memory usage
+
+### 6. VS Code extension (priority: medium)
+
+- Improve syntax highlighting
+- Add autocomplete
 
 ---
 
-## 📏 إرشادات كتابة الكود
+## Code style
 
-### أسلوب الكود في C:
+### C style:
+
 ```c
-// ✅ صحيح
+// Correct
 static int luaB_myfunction(lua_State *L) {
-    // الكود هنا
+    // code here
     return 1;
 }
 
-// ❌ خطأ
+// Wrong
 static int luaB_myfunction(lua_State *L){
-// الكود هنا
+// code here
 return 1;
 }
 ```
 
-### قواعد التسمية:
-| النوع | القاعدة | مثال |
-|-------|---------|------|
-| الدوال (C) | snake_case | `luaB_print` |
-| الدوال (ياقوت) | عربية_مفصولة | `حساب_المساحة` |
-| الثوابت | UPPER_CASE | `LUA_VERSION` |
-| المتغيرات | camelCase | `lineNumber` |
+### Naming rules:
 
-### التعليقات:
+| Type | Rule | Example |
+|------|------|---------|
+| C functions | snake_case | `luaB_print` |
+| Yaqout functions | Arabic with underscores | `حساب_المساحة` |
+| Constants | UPPER_CASE | `LUA_VERSION` |
+| Variables | camelCase | `lineNumber` |
+
+### Comments:
+
 ```c
 /*
-** وصف الدالة: تقوم بطباعة قيمة على الشاشة
-** المعلمات: L - مؤشر الحالة
-** القيمة المرجعة: عدد القيم المرجعة
+** Function description: prints a value to the screen
+** Params: L - state pointer
+** Returns: number of returned values
 */
 static int luaB_print(lua_State *L) {
     // ...
@@ -338,160 +361,174 @@ static int luaB_print(lua_State *L) {
 
 ---
 
-## ❓ الأسئلة الشائعة (FAQ)
+## FAQ
 
-### س1: هل أحتاج لمعرفة لغة Lua للمساهمة؟
-**ج:** ليس بالضرورة. يمكنك المساهمة في التوثيق والترجمة دون معرفة عميقة بـ Lua. لكن لتعديل الكود المصدري، يُفضل فهم أساسيات Lua و C.
+### Q1: Do I need to know Lua to contribute?
 
-### س2: كيف أضيف كلمة مفتاحية جديدة؟
-**ج:** 
-1. افتح ملف `llex.h` وأضف تعريف الـ Token
-2. افتح ملف `llex.c` وأضف الكلمة في مصفوفة `luaX_tokens`
-3. افتح ملف `lparser.c` وعالج الكلمة المفتاحية
+Not necessarily. You can contribute docs and translations without deep Lua knowledge. For source changes, basic Lua and C help.
 
-### س3: كيف أضيف دالة جديدة للمكتبة؟
-**ج:**
+### Q2: How do I add a new keyword?
+
+1. Open `llex.h` and add the token definition
+2. Open `llex.c` and add the word to `luaX_tokens`
+3. Open `lparser.c` and handle the keyword
+
+### Q3: How do I add a new library function?
+
 ```c
-// 1. اكتب الدالة
+// 1. Write the function
 static int my_function(lua_State *L) {
-    // الكود
+    // code
     return 1;
 }
 
-// 2. أضفها للمصفوفة
+// 2. Add it to the array
 static const luaL_Reg my_funcs[] = {
-    {"اسم_الدالة", my_function},
+    {"function_name", my_function},
     {NULL, NULL}
 };
 ```
 
-### س4: لماذا لا تعمل الحروف العربية في أسماء المتغيرات؟
-**ج:** تأكد من:
-- حفظ الملف بترميز UTF-8
-- استخدام إصدار ياقوت الأحدث
-- عدم وجود BOM في بداية الملف
+### Q4: Arabic letters do not work in variable names?
 
-### س5: كيف أختبر تعديلاتي؟
-**ج:**
+Make sure:
+
+- File is saved as UTF-8
+- You use the latest Yaqout build
+- No BOM at the start of the file
+
+### Q5: How do I test my changes?
+
 ```bash
-# تجميع
-gcc -O2 -std=c99 -o yaqout.exe [الملفات]
+# Build
+gcc -O2 -std=c99 -o yaqout.exe [files]
 
-# اختبار بسيط
+# Simple test
 echo 'اطبع("مرحبا")' > test.yq
 .\yaqout.exe test.yq
 
-# اختبارات كاملة
+# Full tests
 .\yaqout.exe testes/all.lua
 ```
 
-### س6: ما الفرق بين `.yq` و `.ياقوت`؟
-**ج:** كلاهما مدعوم. `.yq` للاختصار و `.ياقوت` للوضوح. يُفضل استخدام `.yq` للتوافق مع الأنظمة المختلفة.
+### Q6: What is the difference between `.yq` and `.ياقوت`?
+
+Both are supported. `.yq` is short, `.ياقوت` is explicit. Prefer `.yq` for system compatibility.
 
 ---
 
-## ⚠️ الأخطاء الشائعة وحلولها
+## Common errors
 
-### خطأ 1: `gcc: command not found`
-**السبب:** GCC غير مثبت أو غير مضاف للـ PATH
-**الحل:**
+### Error 1: `gcc: command not found`
+
+**Cause:** GCC not installed or not in PATH
+**Fix:**
+
 ```bash
-# Windows
-# أضف مسار MinGW\bin للـ System PATH
-
-# Linux
+# Windows: add MinGW\bin to System PATH
+# Linux:
 sudo apt install build-essential
 ```
 
-### خطأ 2: `undefined reference to 'luaB_print'`
-**السبب:** نسيت تضمين ملف في أمر التجميع
-**الحل:** تأكد من تضمين جميع ملفات `.c`
+### Error 2: `undefined reference to 'luaB_print'`
 
-### خطأ 3: `نص غير منتهٍ`
-**السبب:** علامة الاقتباس غير مغلقة
-**الحل:** تأكد من إغلاق كل `"` بعلامة مماثلة
+**Cause:** forgot a file in the build command
+**Fix:** include all `.c` files
 
-### خطأ 4: `محدد نص طويل غير صالح`
-**السبب:** استخدام خاطئ لـ `[[` و `]]`
-**الحل:** استخدم `[[نص طويل]]` بشكل صحيح
+### Error 3: unfinished string
 
-### خطأ 5: الحروف العربية تظهر بشكل غريب
-**السبب:** ترميز الملف غير صحيح
-**الحل:**
-- احفظ الملف بترميز UTF-8
-- في CMD: `chcp 65001`
-- في PowerShell: `[Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8`
+**Cause:** unclosed quote
+**Fix:** close every `"` properly
 
-### خطأ 6: `attempt to call a nil value`
-**السبب:** الدالة غير معرفة أو مكتوبة بشكل خاطئ
-**الحل:** تأكد من:
-- كتابة اسم الدالة بشكل صحيح
-- استدعاء المكتبة إن لزم الأمر
+### Error 4: invalid long string delimiter
 
----
+**Cause:** wrong use of `[[` and `]]`
+**Fix:** use `[[long text]]` correctly
 
-## 🔓 الثغرات المعروفة
+### Error 5: Arabic letters look broken
 
-### ثغرة 1: تداخل الترميز
-**الوصف:** بعض أحرف Unicode قد تسبب مشاكل في المحلل اللغوي
-**الحالة:** 🔴 معروفة - تحتاج إصلاح
-**الحل المؤقت:** تجنب الأحرف الخاصة غير المستخدمة
+**Cause:** wrong file encoding
+**Fix:**
 
-### ثغرة 2: حد طول المعرفات
-**الوصف:** المعرفات العربية الطويلة قد تتجاوز الحد المسموح
-**الحالة:** 🟡 منخفضة الأولوية
-**الحل المؤقت:** استخدم أسماء أقصر
+- Save as UTF-8
+- CMD: `chcp 65001`
+- PowerShell: `[Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8`
 
-### ثغرة 3: التوافق مع مكتبات C الخارجية
-**الوصف:** بعض المكتبات قد لا تدعم أسماء الدوال العربية
-**الحالة:** 🟡 قيد الدراسة
-**الحل المؤقت:** استخدم أسماء إنجليزية للواجهات الخارجية
+### Error 6: `attempt to call a nil value`
+
+**Cause:** function undefined or misspelled
+**Fix:** check the function name and required library
 
 ---
 
-## 💬 مميزات ياقوت مقارنة بالبدائل
+## Known issues
 
-| الميزة | ياقوت | Python العربية | JavaScript العربية |
-|--------|-------|----------------|-------------------|
-| الكلمات المفتاحية العربية | ✅ | ❌ | ❌ |
-| أسماء المتغيرات العربية | ✅ | ✅ | ✅ |
-| المكتبات المعربة | ✅ | ❌ | ❌ |
-| خفة الوزن | ✅ | ❌ | ❌ |
-| سهولة التعلم | ✅ | ✅ | 🟡 |
-| التضمين في الألعاب | ✅ | ❌ | 🟡 |
+### Issue 1: Encoding overlap
 
----
+**Description:** some Unicode chars may confuse the lexer
+**Status:** Known - needs fix
+**Workaround:** avoid unused special chars
 
-## 📞 التواصل والدعم
+### Issue 2: Identifier length limit
 
-### قنوات التواصل:
-- **GitHub Issues**: للإبلاغ عن الأخطاء والمقترحات
-- **GitHub Discussions**: للنقاشات العامة
+**Description:** very long Arabic identifiers may exceed the limit
+**Status:** Low priority
+**Workaround:** use shorter names
 
-### المطور الرئيسي:
-- **إسلام النشار** (Islam Al-Nashar)
-- **المؤسسة**: ستوديو النشار (Al-Nashar Studio)
+### Issue 3: External C library compatibility
+
+**Description:** some libraries do not support Arabic function names
+**Status:** Under review
+**Workaround:** use English names for external interfaces
 
 ---
 
-## 📜 الترخيص
+## Yaqout advantages vs alternatives
 
-هذا المشروع مرخص تحت رخصة **MIT**، مما يعني:
-- ✅ يمكنك استخدامه مجاناً
-- ✅ يمكنك تعديله
-- ✅ يمكنك توزيعه
-- ✅ يمكنك استخدامه تجارياً
-- ⚠️ يجب الإبقاء على إشعار حقوق الملكية
-
----
-
-## 🌟 شكر خاص
-
-نشكر كل من يساهم في تطوير ياقوت. كل سطر كود، كل توثيق، وكل اقتراح يساهم في بناء مستقبل البرمجة العربية.
-
-**معاً نبني مستقبل البرمجة بلغتنا! 🚀**
+| Feature | Yaqout | Arabic Python | Arabic JavaScript |
+|---------|--------|---------------|-------------------|
+| Arabic keywords | Yes | No | No |
+| Arabic variable names | Yes | Yes | Yes |
+| Localized libraries | Yes | No | No |
+| Lightweight | Yes | No | No |
+| Easy to learn | Yes | Yes | Partial |
+| Game embedding | Yes | No | Partial |
 
 ---
 
-*آخر تحديث: فبراير 2026*
-*الإصدار: 1.0*
+## Contact and support
+
+### Channels:
+
+- **GitHub Issues**: bug reports and proposals
+- **GitHub Discussions**: general discussion
+
+### Lead developer:
+
+- **Islam Al-Nashar**
+- **Organization**: Al-Nashar Studio
+
+---
+
+## License
+
+This project is licensed under **MIT**, which means:
+
+- You can use it for free
+- You can modify it
+- You can distribute it
+- You can use it commercially
+- Keep the copyright notice
+
+---
+
+## Special thanks
+
+Thanks to everyone contributing to Yaqout. Every line of code, doc, and suggestion builds the future of Arabic programming.
+
+**Let's build the future of programming in our language together!**
+
+---
+
+*Last updated: February 2026*
+*Version: 1.0*
